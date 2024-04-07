@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "portalhexaddon",
+  "version": "${version}",
+  "name": "Portal Hex Addon",
+  "description": "Portal Hex Addon addon for Hex Casting",
+  "authors": [
+    "stickia"
+  ],
+  "contact": {
+    "homepage": "https://stickia.github.io/PortalHexAddon",
+    "sources": "https://github.com/stickia/PortalHexAddon"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.portalhexaddon.fabric.PortalHexAddonFabric"
+    ],
+    "client": [
+      "net.portalhexaddon.fabric.PortalHexAddonClientFabric"
+    ]
+  },
+  "mixins": [
+    "portalhexaddon-common.mixins.json",
+    "portalhexaddon.mixins.json"
+  ],
+  "depends": {
+    "minecraft": ">=${minecraftVersion}",
+    "fabricloader": ">=${fabricLoaderVersion}",
+    "fabric-api": "*",
+    "fabric-language-kotlin": ">=${fabricKotlinVersion}",
+    "architectury": ">=${architecturyVersion}",
+    "hexcasting": ">=${hexcastingVersion}"
+  }
+}

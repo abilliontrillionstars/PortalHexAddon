@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "net.portalhexaddon.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+    "PortalHexAddonMixin"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

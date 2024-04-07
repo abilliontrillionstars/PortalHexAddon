@@ -1,2 +1,3 @@
-# PortalHexAddon
-A learning Hex Casting addon that adds patterns for Immerive Portals
+# Portal Hex Addon
+
+Portal Hex Addon addon for Hex Casting
