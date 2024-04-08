@@ -51,6 +51,9 @@ dependencies {
 
     common(project(path: ":Common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":Common", configuration: "transformProductionForge")) { transitive = false }
+    //added Dependents
+    modImplementation ("com.github.iPortalTeam.ImmersivePortalsMod:build:v2.2.1-1.19.2")
+
 }
 
 processResources {

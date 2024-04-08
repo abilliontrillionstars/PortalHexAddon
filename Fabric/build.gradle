@@ -55,6 +55,8 @@ dependencies {
 
     common(project(path: ":Common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":Common", configuration: "transformProductionFabric")) { transitive false }
+    //added Dependents
+    modImplementation ("com.github.iPortalTeam.ImmersivePortalsMod:build:v2.2.1-1.19.2")
 }
 
 processResources {
@@ -103,9 +105,19 @@ publishing {
 
     // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
-        // Add repositories to publish to here.
+        // Add repositories to publish to here
+        maven {
+            name = "Modrinth"
+            url = "https://api.modrinth.com/maven"
+            content {
+                includeGroup "maven.modrinth"
+            }
+        }
+        maven { url "https://jitpack.io" }
+        mavenCentral()
     }
 }
+
 
 publishMods {
     file = remapJar.archiveFile
