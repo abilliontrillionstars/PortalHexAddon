@@ -34,15 +34,16 @@ class OpSignum : SpellAction {
         return Triple(
             Spell(playe,numb),
             0,
-            listOf(ParticleSpray.burst(playe.position(), 1.0))
-
+            listOf(ParticleSpray.burst(playe.position(), 999.0))
         )
+
     }
 
     private data class Spell(val player: ServerPlayer, val numb: Double) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
-            player.sendSystemMessage(Component.translatable("text.portalhexaddon.congrats", player.displayName))
             abs(numb).asActionResult
+            player.sendSystemMessage(Component.translatable("text.portalhexaddon.congrats", player.displayName))
+
         }
     }
 }

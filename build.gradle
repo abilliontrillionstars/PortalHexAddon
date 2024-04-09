@@ -34,7 +34,9 @@ subprojects {
         annotationProcessor "org.ow2.asm:asm-tree:${project.asmVersion}"
         annotationProcessor "org.ow2.asm:asm-util:${project.asmVersion}"
         //added Dependents
-        annotationProcessor ("com.github.iPortalTeam.ImmersivePortalsMod:build:v2.2.1-1.19.2") //BAD IDEA
+        annotationProcessor "maven.modrinth:immersiveportals:2.2.1-1.19.2"
+        annotationProcessor ("com.github.iPortalTeam.ImmersivePortalsMod:q_misc_util:v2.2.1-1.19.2")
+        annotationProcessor ("com.github.iPortalTeam.ImmersivePortalsMod:build:v2.2.1-1.19.2")
     }
 
     sourceSets.main.kotlin.srcDirs += 'src/main/java'

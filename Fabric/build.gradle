@@ -56,7 +56,11 @@ dependencies {
     common(project(path: ":Common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":Common", configuration: "transformProductionFabric")) { transitive false }
     //added Dependents
+    modImplementation ("maven.modrinth:immersiveportals:2.2.1-1.19.2")
+    modImplementation ("com.github.iPortalTeam.ImmersivePortalsMod:q_misc_util:v2.2.1-1.19.2")
     modImplementation ("com.github.iPortalTeam.ImmersivePortalsMod:build:v2.2.1-1.19.2")
+
+
 }
 
 processResources {
