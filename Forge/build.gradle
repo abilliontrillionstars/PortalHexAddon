@@ -52,10 +52,9 @@ dependencies {
     common(project(path: ":Common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":Common", configuration: "transformProductionForge")) { transitive = false }
     //added Dependents
-  //  modImplementation ("com.github.iPortalTeam.ImmersivePortalsModForForge:ff0642e")
-    modImplementation ("maven.modrinth:immersiveportals:2.2.1-1.19.2")
-    modImplementation ("com.github.iPortalTeam.ImmersivePortalsMod:q_misc_util:v2.2.1-1.19.2")
-    modImplementation ("com.github.iPortalTeam.ImmersivePortalsMod:build:v2.2.1-1.19.2")
+    implementation ("maven.modrinth:immersive-portals-neoforge:2.3.7-1.19.2")
+    //modImplementation ("com.github.iPortalTeam.ImmersivePortalsModForForge:v2.2.1-1.19.2")
+    //modImplementation ("com.github.iPortalTeam.ImmersivePortalsModForForge:v2.2.1-1.19.2")
 
 }
 
