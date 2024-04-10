@@ -48,7 +48,7 @@ class OpCongrats : SpellAction {
         return Triple(
             Spell(target),
             cost,
-            listOf(ParticleSpray.burst(target.position(), 1.0))
+            listOf(ParticleSpray.burst(target.position(), 999.0))
         )
     }
 

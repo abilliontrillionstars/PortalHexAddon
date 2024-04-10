@@ -23,6 +23,12 @@ dependencies {
     modCompileOnly "at.petra-k.paucal:paucal-common-$minecraftVersion:$paucalVersion"
     modCompileOnly "at.petra-k.hexcasting:hexcasting-fabric-$minecraftVersion:$hexcastingVersion"
     modCompileOnly "vazkii.patchouli:Patchouli-xplat:$minecraftVersion-$patchouliVersion"
+
+    //Added dependents
+    modImplementation "maven.modrinth:immersiveportals:2.3.2-1.19.2"
+    modImplementation "com.github.iPortalTeam.ImmersivePortalsMod:q_misc_util:v2.2.3-1.19.2"
+    modImplementation "com.github.iPortalTeam.ImmersivePortalsMod:imm_ptl_core:v2.2.3-1.19.2"
+    modImplementation "com.github.iPortalTeam.ImmersivePortalsMod:build:v2.2.3-1.19.2"
 }
 
 publishing {
