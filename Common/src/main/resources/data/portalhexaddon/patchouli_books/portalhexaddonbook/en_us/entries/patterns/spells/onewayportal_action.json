@@ -1,0 +1,26 @@
+{
+  "name": "portalhexaddon.entry.hexways",
+  "category": "hexcasting:interop",
+  "icon": "minecraft:nether_portal",
+  "sortnum": 0,
+  "advancement": "hexcasting:root",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "portalhexaddon:onewayportal",
+      "anchor": "portalhexaddon:onewayportal",
+      "input": "vec, vec, vec, num",
+      "output": "",
+      "text": "portalhexaddon.page.hexways.onewayportal"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "portalhexaddon:twowayportal",
+      "anchor": "portalhexaddon:twowayportal",
+      "input": "vec, vec, vec, num",
+      "output": "",
+      "text": "portalhexaddon.page.hexways.twowayportal"
+    }
+  ]
+}

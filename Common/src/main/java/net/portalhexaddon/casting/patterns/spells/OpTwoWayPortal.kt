@@ -9,8 +9,6 @@ import net.minecraft.world.phys.Vec3
 import net.portalhexaddon.portals.MakePortalNgon
 import qouteall.imm_ptl.core.api.PortalAPI
 import qouteall.imm_ptl.core.portal.Portal
-import qouteall.imm_ptl.core.portal.PortalManipulation
-import qouteall.imm_ptl.core.portal.PortalManipulation.createFlippedPortal
 
 class OpTwoWayPortal : SpellAction {
     /**
