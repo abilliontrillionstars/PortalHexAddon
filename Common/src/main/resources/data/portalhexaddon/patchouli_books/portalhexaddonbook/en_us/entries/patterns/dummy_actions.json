@@ -7,12 +7,12 @@
   "read_by_default": true,
   "pages": [
     {
-      "type": "hexcasting:pattern",
-      "op_id": "portalhexaddon:signum",
-      "anchor": "portalhexaddon:signum",
-      "input": "number",
-      "output": "number",
-      "text": "portalhexaddon.page.dummy_actions.signum"
+      //"type": "hexcasting:pattern",
+      //"op_id": "portalhexaddon:signum",
+      //"anchor": "portalhexaddon:signum",
+      //"input": "number",
+      //"output": "number",
+      //"text": "portalhexaddon.page.dummy_actions.signum"
     }
   ]
 }

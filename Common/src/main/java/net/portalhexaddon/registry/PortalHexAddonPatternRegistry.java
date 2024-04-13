@@ -5,8 +5,8 @@ import at.petrak.hexcasting.api.spell.Action;
 import at.petrak.hexcasting.api.spell.math.HexDir;
 import at.petrak.hexcasting.api.spell.math.HexPattern;
 import kotlin.Triple;
-import net.portalhexaddon.casting.patterns.math.OpSignum;
-import net.portalhexaddon.casting.patterns.spells.OpCongrats;
+import net.portalhexaddon.casting.patterns.spells.OpOneWayPortal;
+import net.portalhexaddon.casting.patterns.spells.OpTwoWayPortal;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
@@ -18,8 +18,8 @@ public class PortalHexAddonPatternRegistry {
     public static List<Triple<HexPattern, ResourceLocation, Action>> PATTERNS = new ArrayList<>();
     public static List<Triple<HexPattern, ResourceLocation, Action>> PER_WORLD_PATTERNS = new ArrayList<>();
     // IMPORTANT: be careful to keep the registration calls looking like this, or you'll have to edit the hexdoc pattern regex.
-    public static HexPattern CONGRATS = registerPerWorld(HexPattern.fromAngles("eed", HexDir.WEST), "congrats", new OpCongrats());
-    public static HexPattern SIGNUM = register(HexPattern.fromAngles("edd", HexDir.NORTH_WEST), "signum", new OpSignum());
+    public static HexPattern TWOWAYPORTAL = register(HexPattern.fromAngles("wdeeqawqwqwa", HexDir.WEST), "twowayportal", new OpTwoWayPortal());
+    public static HexPattern ONEWAYPORTAL = registerPerWorld(HexPattern.fromAngles("awqwqwadadadaadadaqwdee", HexDir.EAST), "onewayportal", new OpOneWayPortal());
 
     public static void init() {
         try {

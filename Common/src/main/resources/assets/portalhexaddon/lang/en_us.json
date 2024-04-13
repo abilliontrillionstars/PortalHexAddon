@@ -1,13 +1,11 @@
 {
   "item.portalhexaddon.dummy_item": "Dummy Item",
-  "hexcasting.spell.portalhexaddon:congrats": "Congrats",
-  "hexcasting.spell.portalhexaddon:signum": "Signum Purification",
-  "hexcasting.spell.book.portalhexaddon:congrats": "Dum. Spell Actn.",
-  "hexcasting.spell.book.portalhexaddon:signum": "Dum. Actn.",
-  "portalhexaddon.entry.dummy_spells": "Dummy Spells",
-  "portalhexaddon.entry.dummy_actions": "Dummy Actions",
-  "portalhexaddon.page.dummy_spells.congrats": "Accepts a player entity, tells them they are doing a good job and makes them look up.",
-  "portalhexaddon.page.dummy_actions.signum": "Accepts a $(l:casting/101)number/$, returns -1 if it is negative, 0 if 0, 1 if positive.",
-  "text.portalhexaddon.congrats": "Good job, %1$s!",
-  "text.portalhexaddon.congrats.player": "a Player"
+  "hexcasting.spell.portalhexaddon:twowayportal": "Summon 2 Way Portal",
+  "hexcasting.spell.portalhexaddon:onewayportal": "Summon 1 Way Portal",
+  //"hexcasting.spell.book.portalhexaddon:twowayportal": "Dum. Spell Actn.",
+ // "hexcasting.spell.book.portalhexaddon:onewayportal": "Summon 1 Way Portal",
+  //"portalhexaddon.entry.dummy_spells": "Dummy Spells",
+  //"portalhexaddon.entry.dummy_actions": "Dummy Actions",
+  //"portalhexaddon.page.dummy_spells.congrats": "Accepts a player entity, tells them they are doing a good job and makes them look up.",
+  //"portalhexaddon.page.dummy_actions.signum": "Accepts a $(l:casting/101)number/$, returns -1 if it is negative, 0 if 0, 1 if positive.",
 }
