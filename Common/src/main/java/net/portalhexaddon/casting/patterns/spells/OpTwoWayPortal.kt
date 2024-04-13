@@ -53,8 +53,7 @@ class OpTwoWayPortal : SpellAction {
 
     private data class Spell(val PrtPos: Vector3f, val PrtPosOut: Vec3, val PrtRot: Vec3, val PrtSize: Double) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
-            val level = ctx.world
-            val portal: Portal? = Portal.entityType.create(level)
+            val portal: Portal? = Portal.entityType.create(ctx.world)
             var PrtRotCors: Vec3 = PrtRot.cross(Vec3(0.0, 1.0, 0.0))
             var PrtRotCorsCors = Vec3(0.0,0.0,0.0)
 
