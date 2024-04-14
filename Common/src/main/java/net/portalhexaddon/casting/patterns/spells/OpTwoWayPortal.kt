@@ -15,7 +15,6 @@ class OpTwoWayPortal : SpellAction {
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 4
-    val cost = 64 * MediaConstants.CRYSTAL_UNIT
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -36,6 +35,8 @@ class OpTwoWayPortal : SpellAction {
         val PrtRot: Vec3 = args.getVec3(2,argc)
         val PrtSize: Double = args.getDoubleBetween(3,1.0/10.0,10.0,argc)
 
+        val cost = (16 * MediaConstants.CRYSTAL_UNIT * PrtSize).toInt()
+
         val PrtPos3f = Vector3f(PrtPos.x.toFloat(), PrtPos.y.toFloat(), PrtPos.z.toFloat())
 
         ctx.assertVecInRange(PrtPos)
@@ -43,7 +44,7 @@ class OpTwoWayPortal : SpellAction {
 
         return Triple(
             Spell(PrtPos3f,PrtPosOut,PrtRot,PrtSize),
-            0,
+            cost,
             listOf(ParticleSpray.burst(ctx.caster.position(), 1.0))
         )
 
