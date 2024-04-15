@@ -19,9 +19,9 @@ public class PortalHexAddonPatternRegistry {
     public static List<Triple<HexPattern, ResourceLocation, Action>> PATTERNS = new ArrayList<>();
     public static List<Triple<HexPattern, ResourceLocation, Action>> PER_WORLD_PATTERNS = new ArrayList<>();
     // IMPORTANT: be careful to keep the registration calls looking like this, or you'll have to edit the hexdoc pattern regex.
-    public static HexPattern TWOWAYPORTAL = register(HexPattern.fromAngles("wdeeqawqwqwa", HexDir.WEST), "twowayportal", new OpTwoWayPortal());
+    public static HexPattern TWOWAYPORTAL = registerPerWorld(HexPattern.fromAngles("wdeeqawqwqwa", HexDir.WEST), "twowayportal", new OpTwoWayPortal());
     public static HexPattern ONEWAYPORTAL = registerPerWorld(HexPattern.fromAngles("awqwqwadadadaadadaqwdee", HexDir.EAST), "onewayportal", new OpOneWayPortal());
-    public static HexPattern REMOVEPORTAL = registerPerWorld(HexPattern.fromAngles("wdeeqawqwqwaedaqwqad", HexDir.WEST),"removeportal", new OpRemovePortal());
+    public static HexPattern REMOVEPORTAL = register(HexPattern.fromAngles("wdeeqawqwqwaedaqwqad", HexDir.WEST),"removeportal", new OpRemovePortal());
 
     public static void init() {
         try {

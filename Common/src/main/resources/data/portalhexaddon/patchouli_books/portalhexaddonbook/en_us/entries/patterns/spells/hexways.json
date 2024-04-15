@@ -1,11 +1,16 @@
 {
   "name": "portalhexaddon.entry.hexways",
   "category": "hexcasting:interop",
-  "icon": "minecraft:nether_portal",
+  "icon": "minecraft:eye_of_ender",
   "sortnum": 0,
   "advancement": "hexcasting:root",
   "read_by_default": true,
   "pages": [
+    {
+     "title": "portalhexaddon.page.hexways.portalambittitle",
+     "type": "text",
+     "text": "portalhexaddon.page.hexways.portalambit"
+    },
     {
       "type": "hexcasting:pattern",
       "op_id": "portalhexaddon:onewayportal",

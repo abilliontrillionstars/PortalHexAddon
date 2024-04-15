@@ -7,5 +7,7 @@
   "hexcasting.spell.book.portalhexaddon:onewayportal": "Summon 1 Way Portal",
   "portalhexaddon.entry.hexways": "Hex Ways",
   "portalhexaddon.page.hexways.onewayportal": "Accepts a Vector for the portal spawn, another one for output, a third for rotation, and a number for the size",
-  "portalhexaddon.page.hexways.twowayportal": "Accepts a Vector for a portal side, another one for the other portal side, a third for rotation, and a number for the size"
+  "portalhexaddon.page.hexways.twowayportal": "Accepts a Vector for a portal side, another one for the other portal side, a third for rotation, and a number for the size",
+  "portalhexaddon.page.hexways.portalambit": "Seems like through strange forces, Ambit leaks through portals, albeit, half as strong as when it goes it",
+  "portalhexaddon.page.hexways.portalambittitle": "Portal Ambit"
 }
