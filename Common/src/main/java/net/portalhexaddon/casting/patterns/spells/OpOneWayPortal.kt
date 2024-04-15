@@ -6,7 +6,7 @@ import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import com.mojang.math.Vector3f
 import net.minecraft.world.phys.Vec3
-import net.portalhexaddon.portals.MakePortalNgon
+import net.portalhexaddon.portals.PortalHexUtils
 import qouteall.imm_ptl.core.api.PortalAPI
 import qouteall.imm_ptl.core.portal.Portal
 
@@ -66,7 +66,7 @@ class OpOneWayPortal : SpellAction {
                 PrtSize,
                 PrtSize
             )
-            MakePortalNgon.makePortalNGon(portal,6)
+            PortalHexUtils.makePortalNGon(portal,6)
 
             val portal2 = PortalAPI.createFlippedPortal(portal)
 

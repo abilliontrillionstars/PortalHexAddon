@@ -6,6 +6,9 @@ import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
 import com.samsthenerd.hexgloop.casting.ContextModificationHandlers
+import com.samsthenerd.hexgloop.loot.GloopLoot
+import com.samsthenerd.hexgloop.utils.GloopUtils
+import com.samsthenerd.hexgloop.utils.GloopyRenderUtils
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import qouteall.imm_ptl.core.portal.Portal
@@ -39,10 +42,10 @@ class OpRemovePortal : SpellAction {
 
         //ctx.isEntityInRange(Prt)
 
-        if (Prt != Portal.entityType) {
-            throw MishapBadEntity(Prt, Component.translatable("Portal"))
-        } else {
-        }
+        //if (Prt != Portal.entityType) {
+        //    throw MishapBadEntity(Prt, Component.translatable("Portal"))
+        //} else {
+        //}
 
         return Triple(
             Spell(Prt),
@@ -53,6 +56,7 @@ class OpRemovePortal : SpellAction {
 
     private data class Spell(val prt: Entity) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
+
         }
     }
 }

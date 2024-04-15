@@ -61,7 +61,7 @@ dependencies {
     modImplementation "com.github.iPortalTeam.ImmersivePortalsMod:imm_ptl_core:v$ImmPrtVersion-$minecraftVersion"
     modImplementation "com.github.iPortalTeam.ImmersivePortalsMod:build:v$ImmPrtVersion-$minecraftVersion"
 
-    modImplementation "maven.modrinth:hexgloop:$minecraftVersion-$HexGloop-fabric"
+    //runtimeOnly "maven.modrinth:hexgloop:$minecraftVersion-$HexGloop-fabric" //crashes for no reason
     modImplementation "maven.modrinth:wnboi:$WnboiVersion-fabric" //needed by Gloop
 }
 

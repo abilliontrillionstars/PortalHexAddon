@@ -1,5 +1,6 @@
 package net.portalhexaddon.portals
 
+import net.fabricmc.loader.impl.FabricLoaderImpl.InitHelper
 import qouteall.imm_ptl.core.portal.GeometryPortalShape
 import qouteall.imm_ptl.core.portal.Portal
 import java.util.stream.Collectors
@@ -7,7 +8,7 @@ import java.util.stream.IntStream
 import kotlin.math.cos
 import kotlin.math.sin
 
-class MakePortalNgon {
+class PortalHexUtils {
     companion object {
     fun makePortalNGon(portal: Portal, sides: Int) { //GOTTEN FROM IMEMRSIVE PORTALS PortalCommand
         val shape = GeometryPortalShape()
@@ -28,5 +29,6 @@ class MakePortalNgon {
         portal.cullableXEnd = 0.0
         portal.cullableYStart = 0.0
         portal.cullableYEnd = 0.0
+        }
     }
-}}
+}

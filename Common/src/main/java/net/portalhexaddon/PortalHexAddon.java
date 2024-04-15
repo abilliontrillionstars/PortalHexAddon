@@ -1,5 +1,7 @@
 package net.portalhexaddon;
 
+import com.samsthenerd.hexgloop.casting.ContextModificationHandlers;
+import net.portalhexaddon.portals.PortalAmbit;
 import net.portalhexaddon.registry.PortalHexAddonIotaTypeRegistry;
 import net.portalhexaddon.registry.PortalHexAddonItemRegistry;
 import net.portalhexaddon.registry.PortalHexAddonPatternRegistry;
@@ -7,6 +9,8 @@ import net.portalhexaddon.networking.PortalHexAddonNetworking;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import static com.samsthenerd.hexgloop.casting.ContextModificationHandlers.*;
 
 /**
  * This is effectively the loading entrypoint for most of your code, at least
@@ -25,6 +29,7 @@ public class PortalHexAddon {
         PortalHexAddonIotaTypeRegistry.init();
         PortalHexAddonPatternRegistry.init();
 		PortalHexAddonNetworking.init();
+        registerAmbitModifier(PortalAmbit::ambitModifier,0);
 
         LOGGER.info(PortalHexAddonAbstractions.getConfigDirectory().toAbsolutePath().normalize().toString());
     }
