@@ -7,6 +7,7 @@ import at.petrak.hexcasting.api.spell.iota.Iota
 import com.mojang.math.Vector3f
 import net.minecraft.world.phys.Vec3
 import net.portalhexaddon.portals.PortalHexUtils
+import net.portalhexaddon.portals.PortalHexUtils.Companion.PortalVecRotate
 import qouteall.imm_ptl.core.api.PortalAPI
 import qouteall.imm_ptl.core.portal.Portal
 
@@ -26,7 +27,7 @@ class OpOneWayPortal : SpellAction {
         val PrtRot: Vec3 = args.getVec3(2,argc)
         val PrtSize: Double = args.getDoubleBetween(3,1.0/10.0,10.0,argc)
 
-        val cost = (16 * MediaConstants.CRYSTAL_UNIT * PrtSize).toInt()
+        val cost = (64 * MediaConstants.CRYSTAL_UNIT * PrtSize).toInt()
 
         val PrtPos3f = Vector3f(PrtPos.x.toFloat(), PrtPos.y.toFloat(), PrtPos.z.toFloat())
 
@@ -44,29 +45,19 @@ class OpOneWayPortal : SpellAction {
     private data class Spell(val PrtPos: Vector3f, val PrtPosOut: Vec3, val PrtRot: Vec3, val PrtSize: Double) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
             val portal: Portal? = Portal.entityType.create(ctx.world)
-            var PrtRotCors: Vec3 = PrtRot.cross(Vec3(0.0, 1.0, 0.0))
-            var PrtRotCorsCors = Vec3(0.0,0.0,0.0)
-
-            if (1.0 == PrtRot.y) {
-                PrtRotCors = Vec3(0.0,0.0,1.0)
-                PrtRotCorsCors = Vec3(1.0,0.0,0.0)
-            } else if (-1.0 == PrtRot.y) {
-                PrtRotCors = Vec3(1.0,0.0,0.0)
-                PrtRotCorsCors = Vec3(0.0,0.0,-1.0)
-            } else {
-                PrtRotCorsCors = PrtRotCors.cross(PrtRot)
-            }
 
             portal!!.originPos = Vec3(PrtPos)
             portal.setDestinationDimension(ctx.world.dimension())
             portal.setDestination(PrtPosOut)
             portal.setOrientationAndSize(
-                PrtRotCors,
-                PrtRotCorsCors,
+                PortalVecRotate(PrtRot)[0],
+                PortalVecRotate(PrtRot)[1],
+                //Vec3(0.0,0.0,1.0),
+                //Vec3(1.0,0.0,0.0),
                 PrtSize,
                 PrtSize
             )
-            PortalHexUtils.makePortalNGon(portal,6)
+            PortalHexUtils.MakePortalNGon(portal,6)
 
             val portal2 = PortalAPI.createFlippedPortal(portal)
 

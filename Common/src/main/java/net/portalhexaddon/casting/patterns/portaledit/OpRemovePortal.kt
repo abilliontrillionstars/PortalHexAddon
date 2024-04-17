@@ -1,28 +1,24 @@
-package net.portalhexaddon.casting.patterns.spells
+package net.portalhexaddon.casting.patterns.portaledit
 
 import at.petrak.hexcasting.api.misc.MediaConstants
-import at.petrak.hexcasting.api.spell.*
+import at.petrak.hexcasting.api.spell.ParticleSpray
+import at.petrak.hexcasting.api.spell.RenderedSpell
+import at.petrak.hexcasting.api.spell.SpellAction
 import at.petrak.hexcasting.api.spell.casting.CastingContext
+import at.petrak.hexcasting.api.spell.getEntity
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
-import com.samsthenerd.hexgloop.casting.ContextModificationHandlers
-import com.samsthenerd.hexgloop.loot.GloopLoot
-import com.samsthenerd.hexgloop.utils.GloopUtils
-import com.samsthenerd.hexgloop.utils.GloopyRenderUtils
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import qouteall.imm_ptl.core.portal.Portal
-import qouteall.imm_ptl.core.portal.PortalExtension
-import qouteall.imm_ptl.core.portal.PortalLike
 import qouteall.imm_ptl.core.portal.PortalManipulation
-import qouteall.imm_ptl.core.portal.PortalState
 
 class OpRemovePortal : SpellAction {
     /**
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 1
-    val cost = 64 * MediaConstants.CRYSTAL_UNIT
+    val cost = 8 * MediaConstants.SHARD_UNIT
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -38,25 +34,29 @@ class OpRemovePortal : SpellAction {
      * etc.) should be in the private [Spell] data class below.
      */
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
-        val Prt: Entity = args.getEntity(0,argc)
+        val PrtEnt: Entity = args.getEntity(0,argc)
+        var prt = Portal.entityType
 
-        //ctx.isEntityInRange(Prt)
+        ctx.isEntityInRange(PrtEnt)
 
-        //if (Prt != Portal.entityType) {
-        //    throw MishapBadEntity(Prt, Component.translatable("Portal"))
-        //} else {
-        //}
+        if (PrtEnt.type != Portal.entityType) {
+            throw MishapBadEntity(PrtEnt, Component.translatable("Portal"))
+        }
+
 
         return Triple(
-            Spell(Prt),
-            0,
+            Spell(PrtEnt),
+            cost,
             listOf(ParticleSpray.burst(ctx.caster.position(), 1.0))
         )
     }
 
-    private data class Spell(val prt: Entity) : RenderedSpell {
+    private data class Spell(var prtEntity: Entity) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
-
+            var prt = (prtEntity as Portal)
+            prt.run {
+                PortalManipulation.removeConnectedPortals(prt, {});
+                prt.remove(Entity.RemovalReason.KILLED);
         }
     }
-}
+}}
