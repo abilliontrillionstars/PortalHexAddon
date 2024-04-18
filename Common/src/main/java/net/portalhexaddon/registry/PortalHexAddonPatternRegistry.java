@@ -5,12 +5,13 @@ import at.petrak.hexcasting.api.spell.Action;
 import at.petrak.hexcasting.api.spell.math.HexDir;
 import at.petrak.hexcasting.api.spell.math.HexPattern;
 import kotlin.Triple;
+import net.portalhexaddon.casting.patterns.portaledit.OpMovePortalInput;
+import net.portalhexaddon.casting.patterns.portaledit.OpMovePortalOutput;
 import net.portalhexaddon.casting.patterns.portaledit.OpRotatePortal;
 import net.portalhexaddon.casting.patterns.spells.OpOneWayPortal;
 import net.portalhexaddon.casting.patterns.portaledit.OpRemovePortal;
 import net.portalhexaddon.casting.patterns.spells.OpTwoWayPortal;
 import net.minecraft.resources.ResourceLocation;
-import org.apache.commons.codec.binary.Hex;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,8 @@ public class PortalHexAddonPatternRegistry {
     public static HexPattern ONEWAYPORTAL = registerPerWorld(HexPattern.fromAngles("awqwqwadadadaadadaqwdee", HexDir.EAST), "onewayportal", new OpOneWayPortal());
     public static HexPattern REMOVEPORTAL = register(HexPattern.fromAngles("wdeeqawqwqwaedaqwqad", HexDir.WEST),"removeportal", new OpRemovePortal());
     public static HexPattern ROTATEPORTAL = register(HexPattern.fromAngles("wdeeqawqwqwaedweewwewwewweewd", HexDir.WEST),"rotateportal", new OpRotatePortal());
+    public static HexPattern MOVEPORTALINPUT = register(HexPattern.fromAngles("waqqedwewewdqee", HexDir.EAST), "moveportalinput", new OpMovePortalInput());
+    public static HexPattern MOVEPORTALOUTPUT = register(HexPattern.fromAngles("eedwaqqedwewewd", HexDir.NORTH_EAST), "moveportaloutput", new OpMovePortalOutput());
 
     public static void init() {
         try {

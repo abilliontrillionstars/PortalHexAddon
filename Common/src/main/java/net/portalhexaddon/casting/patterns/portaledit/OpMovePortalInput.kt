@@ -1,24 +1,22 @@
 package net.portalhexaddon.casting.patterns.portaledit
 
 import at.petrak.hexcasting.api.misc.MediaConstants
-import at.petrak.hexcasting.api.spell.ParticleSpray
-import at.petrak.hexcasting.api.spell.RenderedSpell
-import at.petrak.hexcasting.api.spell.SpellAction
+import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
-import at.petrak.hexcasting.api.spell.getEntity
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
+import net.minecraft.world.phys.Vec3
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
 
-class OpRemovePortal : SpellAction {
+class OpMovePortalInput : SpellAction {
     /**
      * The number of arguments from the stack that this action requires.
      */
-    override val argc: Int = 1
-    val cost = 8 * MediaConstants.SHARD_UNIT
+    override val argc: Int = 2
+    private val cost = 8 * MediaConstants.SHARD_UNIT
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -35,27 +33,57 @@ class OpRemovePortal : SpellAction {
      */
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
         val prtEnt: Entity = args.getEntity(0,argc)
+        val prtLocation: Vec3 = args.getVec3(1,argc)
 
         ctx.isEntityInRange(prtEnt)
+        ctx.isVecInRange(prtLocation)
 
-        if (prtEnt.type != Portal.entityType) {
-            throw MishapBadEntity(prtEnt, Component.translatable("Portal"))
+
+        if (prtEnt.type !== Portal.entityType) {
+            throw MishapBadEntity(prtEnt, Component.translatable("portaltranslate"))
         }
 
-
         return Triple(
-            Spell(prtEnt),
+            Spell(prtEnt, prtLocation),
             cost,
             listOf(ParticleSpray.burst(ctx.caster.position(), 1.0))
         )
     }
 
-    private data class Spell(var prtEntity: Entity) : RenderedSpell {
+    private data class Spell(var prtEntity: Entity, var prtLoc: Vec3) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
-            prt.run {
-                PortalManipulation.removeConnectedPortals(prt, {});
-                prt.remove(Entity.RemovalReason.KILLED)
+            var revFlipPrt = prt
+
+            val flipPrt = PortalManipulation.findFlippedPortal(prt)
+            val revPrt = PortalManipulation.findReversePortal(prt)
+            if (revPrt !== null) {
+               revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
+            }
+
+
+            if (revPrt != null) {
+                revPrt.setDestination(prtLoc)
+                revPrt.reloadAndSyncToClient()
+            }
+            if (revFlipPrt != null && revFlipPrt != prt) {
+                revFlipPrt.setDestination(prtLoc)
+                revFlipPrt.reloadAndSyncToClient()
+            }
+
+            prt.moveTo(prtLoc)
+            prt.reloadAndSyncToClient()
+
+            if (flipPrt != null) {
+                flipPrt.moveTo(prtLoc)
+                flipPrt.reloadAndSyncToClient()
+            }
+
+
+            /** WHAT TO DO:
+             *  1) set input to new location
+             *  2) set the output side to the input new location
+             */
         }
     }
-}}
+}

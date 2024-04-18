@@ -5,11 +5,9 @@ import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
-import net.fabricmc.loader.impl.lib.sat4j.core.Vec
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.phys.Vec3
-import net.portalhexaddon.portals.PortalHexUtils
 import net.portalhexaddon.portals.PortalHexUtils.Companion.PortalVecRotate
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
