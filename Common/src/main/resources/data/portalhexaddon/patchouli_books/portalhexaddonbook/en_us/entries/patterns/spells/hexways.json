@@ -26,6 +26,30 @@
       "input": "vec, vec, vec, num",
       "output": "",
       "text": "portalhexaddon.page.hexways.twowayportal"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "portalhexaddon:moveportalinput",
+      "anchor": "portalhexaddon:moveportalinput",
+      "input": "entity (Portal), vec",
+      "output": "",
+      "text": "portalhexaddon.page.hexways.moveportalinput"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "portalhexaddon:moveportaloutput",
+      "anchor": "portalhexaddon:moveportaloutput",
+      "input": "entity (Portal), vec",
+      "output": "",
+      "text": "portalhexaddon.page.hexways.moveportaloutput"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "portalhexaddon:removeportal",
+      "anchor": "portalhexaddon:removeportal",
+      "input": "entity (Portal)",
+      "output": "",
+      "text": "portalhexaddon.page.hexways.removeportal"
     }
   ]
 }
