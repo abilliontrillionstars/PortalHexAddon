@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": {
+      "item": "minecraft:iron_ingot"
+    },
+    "Y": {
+      "item": "hexcasting:charged_amethyst"
+    },
+    "Z": {
+      "item": "hexcasting:dye_colorizer_black"
+    }
+  },
+  "pattern": [
+    " Z ",
+    " YZ",
+    "X  "
+  ],
+  "result": {
+    "item": "portalhexaddon:portal_staff"
+  },
+  "show_notification": true
+}

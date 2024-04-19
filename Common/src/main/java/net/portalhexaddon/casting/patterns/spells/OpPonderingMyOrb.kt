@@ -11,7 +11,7 @@ import net.portalhexaddon.portals.PortalHexUtils.Companion.PortalVecRotate
 import qouteall.imm_ptl.core.api.PortalAPI
 import qouteall.imm_ptl.core.portal.Portal
 
-class OpOneWayPortal : SpellAction {
+class OpPonderingMyOrb : SpellAction {
     override val argc: Int = 4
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -27,7 +27,7 @@ class OpOneWayPortal : SpellAction {
         val prtRot: Vec3 = args.getVec3(2,argc)
         val prtSize: Double = args.getDoubleBetween(3,1.0/10.0,10.0,argc)
 
-        val cost = (64 * MediaConstants.CRYSTAL_UNIT * prtSize).toInt()
+        val cost = (4 * MediaConstants.CRYSTAL_UNIT * prtSize).toInt()
 
         val prtPos3f = Vector3f(prtPos.x.toFloat(), prtPos.y.toFloat(), prtPos.z.toFloat())
 
@@ -58,6 +58,8 @@ class OpOneWayPortal : SpellAction {
             PortalHexUtils.MakePortalNGon(portal,6)
 
             val portal2 = PortalAPI.createFlippedPortal(portal)
+            portal.teleportable = false
+            portal2.teleportable = false
 
             portal.level.addFreshEntity(portal2)
             portal.level.addFreshEntity(portal)

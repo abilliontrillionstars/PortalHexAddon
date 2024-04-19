@@ -1,15 +1,23 @@
 {
   "name": "portalhexaddon.entry.hexways",
   "category": "hexcasting:interop",
-  "icon": "minecraft:eye_of_ender",
+  "icon": "hexportaladdon:portal_staff",
   "sortnum": 0,
   "advancement": "hexcasting:root",
   "read_by_default": true,
   "pages": [
     {
-     "title": "portalhexaddon.page.hexways.portalambittitle",
-     "type": "text",
-     "text": "portalhexaddon.page.hexways.portalambit"
+      "title": "portalhexaddon.page.hexways.portalambittitle",
+      "type": "text",
+      "text": "portalhexaddon.page.hexways.portalambit"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "portalhexaddon:twowayportal",
+      "anchor": "portalhexaddon:twowayportal",
+      "input": "vec, vec, vec, num",
+      "output": "",
+      "text": "portalhexaddon.page.hexways.twowayportal"
     },
     {
       "type": "hexcasting:pattern",
@@ -21,11 +29,11 @@
     },
     {
       "type": "hexcasting:pattern",
-      "op_id": "portalhexaddon:twowayportal",
-      "anchor": "portalhexaddon:twowayportal",
+      "op_id": "portalhexaddon:summonscry",
+      "anchor": "portalhexaddon:summonscry",
       "input": "vec, vec, vec, num",
       "output": "",
-      "text": "portalhexaddon.page.hexways.twowayportal"
+      "text": "portalhexaddon.page.hexways.summonscry"
     },
     {
       "type": "hexcasting:pattern",
@@ -42,6 +50,20 @@
       "input": "entity (Portal), vec",
       "output": "",
       "text": "portalhexaddon.page.hexways.moveportaloutput"
+    },    {
+      "type": "hexcasting:pattern",
+      "op_id": "portalhexaddon:setportalsides",
+      "anchor": "portalhexaddon:setportalsides",
+      "input": "entity (Portal), vec",
+      "output": "",
+      "text": "portalhexaddon.page.hexways.setportalsides"
+    },    {
+      "type": "hexcasting:pattern",
+      "op_id": "portalhexaddon:resizeportal",
+      "anchor": "portalhexaddon:resizeportal",
+      "input": "entity (Portal), vec",
+      "output": "",
+      "text": "portalhexaddon.page.hexways.moveportaloutput"
     },
     {
       "type": "hexcasting:pattern",
@@ -50,6 +72,14 @@
       "input": "entity (Portal)",
       "output": "",
       "text": "portalhexaddon.page.hexways.removeportal"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "portalhexaddon:getoutputinfo",
+      "anchor": "portalhexaddon:getoutputinfo",
+      "input": "entity (Portal)",
+      "output": "",
+      "text": "portalhexaddon.page.hexways.getoutputinfo"
     }
   ]
 }

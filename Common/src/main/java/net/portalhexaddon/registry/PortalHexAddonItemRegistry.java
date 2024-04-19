@@ -1,5 +1,6 @@
 package net.portalhexaddon.registry;
 
+import at.petrak.hexcasting.common.items.ItemStaff;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -20,10 +21,9 @@ public class PortalHexAddonItemRegistry {
     }
 
     // A new creative tab. Notice how it is one of the few things that are not deferred
-    public static final CreativeModeTab DUMMY_GROUP = CreativeTabRegistry.create(id("dummy_group"), () -> new ItemStack(PortalHexAddonItemRegistry.DUMMY_ITEM.get()));
+    public static final CreativeModeTab PORTAL_GROUP = CreativeTabRegistry.create(id("portal_group"), () -> new ItemStack(PortalHexAddonItemRegistry.PORTAL_STAFF.get()));
 
     // During the loading phase, refrain from accessing suppliers' items (e.g. EXAMPLE_ITEM.get()), they will not be available
-    public static final RegistrySupplier<Item> DUMMY_ITEM = ITEMS.register("dummy_item", () -> new Item(new Item.Properties().tab(DUMMY_GROUP)));
-
+    public static final RegistrySupplier<Item> PORTAL_STAFF = ITEMS.register("portal_staff", () -> new ItemStaff(new Item.Properties().stacksTo(1).tab(PORTAL_GROUP)));
 
 }

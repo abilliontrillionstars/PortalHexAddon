@@ -5,11 +5,10 @@ import at.petrak.hexcasting.api.spell.Action;
 import at.petrak.hexcasting.api.spell.math.HexDir;
 import at.petrak.hexcasting.api.spell.math.HexPattern;
 import kotlin.Triple;
-import net.portalhexaddon.casting.patterns.portaledit.OpMovePortalInput;
-import net.portalhexaddon.casting.patterns.portaledit.OpMovePortalOutput;
-import net.portalhexaddon.casting.patterns.portaledit.OpRotatePortal;
+import net.portalhexaddon.casting.patterns.portaledit.*;
+import net.portalhexaddon.casting.patterns.portalinfo.OpOutputInfo;
 import net.portalhexaddon.casting.patterns.spells.OpOneWayPortal;
-import net.portalhexaddon.casting.patterns.portaledit.OpRemovePortal;
+import net.portalhexaddon.casting.patterns.spells.OpPonderingMyOrb;
 import net.portalhexaddon.casting.patterns.spells.OpTwoWayPortal;
 import net.minecraft.resources.ResourceLocation;
 
@@ -21,14 +20,17 @@ import static net.portalhexaddon.PortalHexAddon.id;
 public class PortalHexAddonPatternRegistry {
     public static List<Triple<HexPattern, ResourceLocation, Action>> PATTERNS = new ArrayList<>();
     public static List<Triple<HexPattern, ResourceLocation, Action>> PER_WORLD_PATTERNS = new ArrayList<>();
-    // use "wdeeqawqwqwa" "west" for peak-through
     // IMPORTANT: be careful to keep the registration calls looking like this, or you'll have to edit the hexdoc pattern regex.
     public static HexPattern TWOWAYPORTAL = registerPerWorld(HexPattern.fromAngles("wdeeqawqwqwadeaqadeaedaqae", HexDir.WEST), "twowayportal", new OpTwoWayPortal());
     public static HexPattern ONEWAYPORTAL = registerPerWorld(HexPattern.fromAngles("awqwqwadadadaadadaqwdee", HexDir.EAST), "onewayportal", new OpOneWayPortal());
     public static HexPattern REMOVEPORTAL = register(HexPattern.fromAngles("wdeeqawqwqwaedaqwqad", HexDir.WEST),"removeportal", new OpRemovePortal());
-    public static HexPattern ROTATEPORTAL = register(HexPattern.fromAngles("wdeeqawqwqwaedweewwewwewweewd", HexDir.WEST),"rotateportal", new OpRotatePortal());
+    public static HexPattern ROTATEPORTAL = register(HexPattern.fromAngles("waqqedaqqqa", HexDir.EAST),"rotateportal", new OpRotatePortal());
     public static HexPattern MOVEPORTALINPUT = register(HexPattern.fromAngles("waqqedwewewdqee", HexDir.EAST), "moveportalinput", new OpMovePortalInput());
     public static HexPattern MOVEPORTALOUTPUT = register(HexPattern.fromAngles("eedwaqqedwewewd", HexDir.NORTH_EAST), "moveportaloutput", new OpMovePortalOutput());
+    public static HexPattern SETPORTALSIDES = register(HexPattern.fromAngles("waqqqadawqadadaq", HexDir.EAST), "setportalsides", new OpPortalSides());
+    public static HexPattern RESIZEPORTAL = register(HexPattern.fromAngles("aqaewaqqqqqwwdwewdw", HexDir.NORTH_WEST), "resizeportal", new OpReSizePortal());
+    public static HexPattern SUMMONSCRY = register(HexPattern.fromAngles("wdeeqawqwqwa", HexDir.WEST), "summonscry", new OpPonderingMyOrb());
+    public static HexPattern GETOUTPUTINFO = register(HexPattern.fromAngles("waqqedwewewdawdwwwdw", HexDir.EAST), "getoutputinfo", new OpOutputInfo());
 
     public static void init() {
         try {

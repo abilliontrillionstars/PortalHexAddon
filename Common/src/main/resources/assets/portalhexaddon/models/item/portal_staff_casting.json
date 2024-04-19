@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld_rod",
+  "textures": {
+    "layer0": "portalhexaddon:item/portal_staff_casting"
+  }
+}

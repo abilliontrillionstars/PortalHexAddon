@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/handheld_rod",
+  "overrides": [
+    {
+      "model": "portalhexaddon:item/portal_staff",
+      "predicate": {
+        "hexgloop:is_casting": 0.0
+      }
+    },
+    {
+      "model": "portalhexaddon:item/portal_staff_casting",
+      "predicate": {
+        "hexgloop:is_casting": 1
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "portalhexaddon:item/portal_staff"
+  }
+}

@@ -8,15 +8,16 @@ import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.phys.Vec3
+import net.portalhexaddon.portals.PortalHexUtils
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
 
-class OpMovePortalInput : SpellAction {
+class OpReSizePortal : SpellAction {
     /**
      * The number of arguments from the stack that this action requires.
      */
-    override val argc: Int = 2
-    private val cost = 8 * MediaConstants.DUST_UNIT
+    override val argc: Int = 3
+    private val cost = 16 * MediaConstants.SHARD_UNIT
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -33,10 +34,10 @@ class OpMovePortalInput : SpellAction {
      */
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
         val prtEnt: Entity = args.getEntity(0,argc)
-        val prtLocation: Vec3 = args.getVec3(1,argc)
+        val prtHight: Double = args.getDoubleBetween(1,1.0/10.0,10.0,argc)
+        val prtWidth: Double = args.getDoubleBetween(2,1.0/10.0,10.0,argc)
 
         ctx.isEntityInRange(prtEnt)
-        ctx.isVecInRange(prtLocation)
 
 
         if (prtEnt.type !== Portal.entityType) {
@@ -44,16 +45,18 @@ class OpMovePortalInput : SpellAction {
         }
 
         return Triple(
-            Spell(prtEnt, prtLocation),
+            Spell(prtEnt,prtHight,prtWidth),
             cost,
             listOf(ParticleSpray.burst(ctx.caster.position(), 1.0))
         )
     }
 
-    private data class Spell(var prtEntity: Entity, var prtLoc: Vec3) : RenderedSpell {
+    private data class Spell(var prtEntity: Entity, var prtHight: Double, var prtWidth: Double) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
+            val shape = prt.specialShape
+            print(shape)
 
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
@@ -61,23 +64,40 @@ class OpMovePortalInput : SpellAction {
                revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
             }
 
-
-            if (revPrt != null) {
-                revPrt.setDestination(prtLoc)
-                revPrt.reloadAndSyncToClient()
-            }
-            if (revFlipPrt != null && revFlipPrt != prt) {
-                revFlipPrt.setDestination(prtLoc)
-                revFlipPrt.reloadAndSyncToClient()
-            }
-
-            prt.moveTo(prtLoc)
+            prt.width = prtWidth
+            prt.height = prtHight
+            prt.specialShape = null
+            prt.reloadAndSyncToClient()
+            PortalHexUtils.MakePortalNGon(prt, 6)
             prt.reloadAndSyncToClient()
 
             if (flipPrt != null) {
-                flipPrt.moveTo(prtLoc)
+                flipPrt.width = prtWidth
+                flipPrt.height = prtHight
+                flipPrt.specialShape = null
+                flipPrt.reloadAndSyncToClient()
+                PortalHexUtils.MakePortalNGon(flipPrt, 6)
                 flipPrt.reloadAndSyncToClient()
             }
+
+            if (revPrt != null) {
+                revPrt.width = prtWidth
+                revPrt.height = prtHight
+                revPrt.specialShape = null
+                revPrt.reloadAndSyncToClient()
+                PortalHexUtils.MakePortalNGon(revPrt, 6)
+                revPrt.reloadAndSyncToClient()
+            }
+            if (revFlipPrt != null && revFlipPrt != prt) {
+                revFlipPrt.width = prtWidth
+                revFlipPrt.height = prtHight
+                revFlipPrt.specialShape = null
+                revFlipPrt.reloadAndSyncToClient()
+                PortalHexUtils.MakePortalNGon(revFlipPrt, 6)
+                revFlipPrt.reloadAndSyncToClient()
+            }
+
+
 
 
             /** WHAT TO DO:

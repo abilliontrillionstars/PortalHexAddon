@@ -7,16 +7,17 @@ import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
-import net.minecraft.world.phys.Vec3
+import net.portalhexaddon.portals.PortalHexUtils
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
+import kotlin.math.roundToInt
 
-class OpMovePortalInput : SpellAction {
+class OpPortalSides : SpellAction {
     /**
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 2
-    private val cost = 8 * MediaConstants.DUST_UNIT
+    private val cost = 10 * MediaConstants.SHARD_UNIT
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -33,10 +34,9 @@ class OpMovePortalInput : SpellAction {
      */
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
         val prtEnt: Entity = args.getEntity(0,argc)
-        val prtLocation: Vec3 = args.getVec3(1,argc)
+        val prtSides: Double = args.getDoubleBetween(1,3.0,16.0,argc).roundToInt().toDouble()
 
         ctx.isEntityInRange(prtEnt)
-        ctx.isVecInRange(prtLocation)
 
 
         if (prtEnt.type !== Portal.entityType) {
@@ -44,13 +44,13 @@ class OpMovePortalInput : SpellAction {
         }
 
         return Triple(
-            Spell(prtEnt, prtLocation),
+            Spell(prtEnt, prtSides),
             cost,
             listOf(ParticleSpray.burst(ctx.caster.position(), 1.0))
         )
     }
 
-    private data class Spell(var prtEntity: Entity, var prtLoc: Vec3) : RenderedSpell {
+    private data class Spell(var prtEntity: Entity, var prtSides: Double) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
@@ -61,29 +61,22 @@ class OpMovePortalInput : SpellAction {
                revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
             }
 
-
-            if (revPrt != null) {
-                revPrt.setDestination(prtLoc)
-                revPrt.reloadAndSyncToClient()
-            }
-            if (revFlipPrt != null && revFlipPrt != prt) {
-                revFlipPrt.setDestination(prtLoc)
-                revFlipPrt.reloadAndSyncToClient()
-            }
-
-            prt.moveTo(prtLoc)
+            PortalHexUtils.MakePortalNGon(prt,prtSides.toInt())
             prt.reloadAndSyncToClient()
 
             if (flipPrt != null) {
-                flipPrt.moveTo(prtLoc)
+                PortalHexUtils.MakePortalNGon(flipPrt,prtSides.toInt())
                 flipPrt.reloadAndSyncToClient()
             }
 
-
-            /** WHAT TO DO:
-             *  1) set input to new location
-             *  2) set the output side to the input new location
-             */
+            if (revPrt != null) {
+                PortalHexUtils.MakePortalNGon(revPrt,prtSides.toInt())
+                revPrt.reloadAndSyncToClient()
+            }
+            if (revFlipPrt != null && revFlipPrt != prt) {
+                PortalHexUtils.MakePortalNGon(revFlipPrt,prtSides.toInt())
+                revFlipPrt.reloadAndSyncToClient()
+            }
         }
     }
 }
