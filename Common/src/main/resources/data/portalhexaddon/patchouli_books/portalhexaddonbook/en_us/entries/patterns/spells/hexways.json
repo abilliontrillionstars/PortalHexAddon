@@ -50,14 +50,24 @@
       "input": "entity (Portal), vec",
       "output": "",
       "text": "portalhexaddon.page.hexways.moveportaloutput"
-    },    {
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "portalhexaddon:rotateportal",
+      "anchor": "portalhexaddon:rotateportal",
+      "input": "entity (Portal), vec",
+      "output": "",
+      "text": "portalhexaddon.page.hexways.rotateportal"
+    },
+    {
       "type": "hexcasting:pattern",
       "op_id": "portalhexaddon:setportalsides",
       "anchor": "portalhexaddon:setportalsides",
       "input": "entity (Portal), vec",
       "output": "",
       "text": "portalhexaddon.page.hexways.setportalsides"
-    },    {
+    },
+    {
       "type": "hexcasting:pattern",
       "op_id": "portalhexaddon:resizeportal",
       "anchor": "portalhexaddon:resizeportal",
