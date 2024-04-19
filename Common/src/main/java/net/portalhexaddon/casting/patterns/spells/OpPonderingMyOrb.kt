@@ -58,8 +58,12 @@ class OpPonderingMyOrb : SpellAction {
             PortalHexUtils.MakePortalNGon(portal,6)
 
             val portal2 = PortalAPI.createFlippedPortal(portal)
+
+            portal.isInteractable = false
+            portal2.isInteractable = false
             portal.teleportable = false
             portal2.teleportable = false
+            
 
             portal.level.addFreshEntity(portal2)
             portal.level.addFreshEntity(portal)

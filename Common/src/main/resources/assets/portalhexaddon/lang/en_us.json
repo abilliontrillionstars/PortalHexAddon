@@ -8,15 +8,9 @@
   "hexcasting.spell.portalhexaddon:moveportaloutput": "Move Portal Output",
   "hexcasting.spell.portalhexaddon:summonscry": "Summon Scry",
   "hexcasting.spell.portalhexaddon:getoutputinfo": "Get Output Info",
-  "hexcasting.spell.book.portalhexaddon:twowayportal": "Summon 2 Way Portal",
-  "hexcasting.spell.book.portalhexaddon:onewayportal": "Summon 1 Way Portal",
-  "hexcasting.spell.book.portalhexaddon:moveportalinput": "Move Portal Input",
-  "hexcasting.spell.book.portalhexaddon:moveportaloutput": "Move Portal Output",
-  "hexcasting.spell.book.portalhexaddon:removeportal": "Remove Portal",
-  "hexcasting.spell.book.portalhexaddon:setportalsides": "Change Portal Sides",
-  "hexcasting.spell.book.portalhexaddon:resizeportal": "Resize portal",
-  "hexcasting.spell.book.portalhexaddon:summonscry": "Summon Scry",
-  "hexcasting.spell.book.portalhexaddon:getoutputinfo": "Get Output Info",
+  "hexcasting.spell.portalhexaddon:resizeportal": "Resize Portal",
+  "hexcasting.spell.portalhexaddon:setportalsides": "Set Sides Portal",
+
   "portalhexaddon.entry.hexways": "Hex Ways",
   "portalhexaddon.page.hexways.onewayportal": "Accepts a Vector for the portal spawn, one for output, a third for rotation, and a number for the size. This is unfortunately quite expensive due to the balance of media, costing 64 charged amethyst per size given",
   "portalhexaddon.page.hexways.twowayportal": "Accepts a Vector for a portal side, another one for the other portal side, a third for rotation, and a number for the size. This is much cheaper then 1 Way Portals, costing only 16 charged amethyst per size given",
@@ -26,7 +20,8 @@
   "portalhexaddon.page.hexways.removeportal": "Remove Portal takes a portal entity, and closes the Portal pair, perfect for when the portal is slowing down reality, or if I just don't want a portal anymore. Costs 2 dusts",
   "portalhexaddon.page.hexways.portalambit": "Seems like through strange forces, Ambit leaks through portals, albeit, half as strong as when it goes it",
   "portalhexaddon.page.hexways.setportalsides": "As much as I love the Hexagons, they don't fit every situation. So I can change the amount of sides of a portal with this, it seems like it rounds the number I feed it. Costs 10 shards",
-  "portalhexaddon.page.hexways.resizeportal": "I have reasons for not wanting to use normal shapes (even just to mess with other people). by giving a hight and a width I may change the size of it, it does change it to a hexagon though. Costs 16 shards",
+  "portalhexaddon.page.hexways.resizeportal": "I have reasons for not wanting to use normal shapes (even just to mess with other people). By giving a hight and a width I may change the size of the portal, it does change it to a hexagon though. Costs 16 shards",
   "portalhexaddon.page.hexways.getoutputinfo": "This nifty little pattern return ether the portal's output portal, or the vector of the portal. This could be useful combined with Portal Ambit. It has not cost as far as I can tell, strange",
+  "portalhexaddon.page.hexways.rotateportal": "I have rotated my placement wrong, luckily, I can use this spell to change the rotation of the portal. However it rotates both pairs of portals... Costs 2 dust, strangely cheap, I should take use of that",
   "portalhexaddon.page.hexways.portalambittitle": "Portal Ambit"
 }

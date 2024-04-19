@@ -63,7 +63,7 @@
       "anchor": "portalhexaddon:resizeportal",
       "input": "entity (Portal), vec",
       "output": "",
-      "text": "portalhexaddon.page.hexways.moveportaloutput"
+      "text": "portalhexaddon.page.hexways.resizeportal"
     },
     {
       "type": "hexcasting:pattern",

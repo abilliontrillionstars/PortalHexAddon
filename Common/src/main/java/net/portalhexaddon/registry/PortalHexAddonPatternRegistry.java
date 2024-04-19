@@ -28,7 +28,7 @@ public class PortalHexAddonPatternRegistry {
     public static HexPattern MOVEPORTALINPUT = register(HexPattern.fromAngles("waqqedwewewdqee", HexDir.EAST), "moveportalinput", new OpMovePortalInput());
     public static HexPattern MOVEPORTALOUTPUT = register(HexPattern.fromAngles("eedwaqqedwewewd", HexDir.NORTH_EAST), "moveportaloutput", new OpMovePortalOutput());
     public static HexPattern SETPORTALSIDES = register(HexPattern.fromAngles("waqqqadawqadadaq", HexDir.EAST), "setportalsides", new OpPortalSides());
-    public static HexPattern RESIZEPORTAL = register(HexPattern.fromAngles("aqaewaqqqqqwwdwewdw", HexDir.NORTH_WEST), "resizeportal", new OpReSizePortal());
+    public static HexPattern RESIZEPORTAL = register(HexPattern.fromAngles("waqqwdedwqqwwdwewdw", HexDir.EAST), "resizeportal", new OpReSizePortal());
     public static HexPattern SUMMONSCRY = register(HexPattern.fromAngles("wdeeqawqwqwa", HexDir.WEST), "summonscry", new OpPonderingMyOrb());
     public static HexPattern GETOUTPUTINFO = register(HexPattern.fromAngles("waqqedwewewdawdwwwdw", HexDir.EAST), "getoutputinfo", new OpOutputInfo());
 
