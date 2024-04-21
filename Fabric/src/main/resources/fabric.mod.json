@@ -35,7 +35,7 @@
     "fabric-language-kotlin": ">=${fabricKotlinVersion}",
     "architectury": ">=${architecturyVersion}",
     "hexcasting": ">=${hexcastingVersion}",
-    "immersive_portals": ">=${ImmPrtVersion}",
-    "hexgloop": ">=${HexGloop}"
+    "immersive_portals": ">=2.2.3",
+    "hexgloop": ">=0.2.0"
   }
 }
