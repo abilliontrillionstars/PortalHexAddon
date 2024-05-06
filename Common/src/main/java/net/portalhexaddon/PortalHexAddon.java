@@ -17,7 +17,6 @@ public class PortalHexAddon {
     public static final String MOD_ID = "portalhexaddon";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-
     public static void init() {
         LOGGER.info("Portal Hex Addon says hello!");
 
@@ -29,7 +28,6 @@ public class PortalHexAddon {
         com.samsthenerd.hexgloop.casting.ContextModificationHandlers.registerAmbitModifier(PortalAmbit::ambitModifier, 0);
         LOGGER.info(PortalHexAddonAbstractions.getConfigDirectory().toAbsolutePath().normalize().toString());
     }
-
     /**
      * Shortcut for identifiers specific to this mod.
      */

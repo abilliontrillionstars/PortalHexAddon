@@ -137,6 +137,8 @@ allprojects {
             "forgeKotlinVersion": project.forgeKotlinVersion,
             "hexcastingVersion": project.hexcastingVersion,
             "minecraftVersion": project.minecraftVersion,
+            "ImmPrtVersion": project.ImmPrtVersion,
+            "HexGloopVersion": project.HexGloopVersion,
         ]
 
         // for incremental builds

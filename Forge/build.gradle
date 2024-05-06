@@ -51,11 +51,15 @@ dependencies {
 
     common(project(path: ":Common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":Common", configuration: "transformProductionForge")) { transitive = false }
+
     //added Dependents
     //modImplementation ("maven.modrinth:immersive-portals-neoforge:${ImmPrtVersion}-${minecraftVersion}")
     //modImplementation "com.github.iPortalTeam.ImmersivePortalsModForForge:v2.2.1-1.19.2"
     //modImplementation "com.github.iPortalTeam:ImmersivePortalsModForForge:2.3.7-mc1.19.2-forge"
     //modImplementation "com.github.iPortalTeam:immersive-portals:2.3.7-mc1.19.2-forge"
+
+    modImplementation "maven.modrinth:hexgloop:$minecraftVersion-$HexGloopVersion-forge" //needed by Gloop
+    modImplementation "maven.modrinth:wnboi:$WnboiVersion-forge" //needed by Gloop
 
 }
 

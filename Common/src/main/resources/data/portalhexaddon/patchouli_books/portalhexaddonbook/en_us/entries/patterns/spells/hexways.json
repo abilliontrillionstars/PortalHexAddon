@@ -88,7 +88,7 @@
       "op_id": "portalhexaddon:getoutputinfo",
       "anchor": "portalhexaddon:getoutputinfo",
       "input": "entity (Portal)",
-      "output": "",
+      "output": "entity",
       "text": "portalhexaddon.page.hexways.getoutputinfo"
     }
   ]

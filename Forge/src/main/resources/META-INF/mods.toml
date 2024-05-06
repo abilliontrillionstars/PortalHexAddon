@@ -39,3 +39,17 @@ mandatory = true
 versionRange = "[${hexcastingVersion},)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.portalhexaddon]]
+modId = "immersive_portals"
+mandatory = true
+versionRange = "[${ImmPrtVersion},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.portalhexaddon]]
+modId = "hexgloop"
+mandatory = true
+versionRange = "[${HexGloopVersion},)"
+ordering = "NONE"
+side = "BOTH"
