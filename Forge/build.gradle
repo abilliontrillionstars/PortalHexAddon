@@ -58,8 +58,8 @@ dependencies {
     //modImplementation "com.github.iPortalTeam:ImmersivePortalsModForForge:2.3.7-mc1.19.2-forge"
     //modImplementation "com.github.iPortalTeam:immersive-portals:2.3.7-mc1.19.2-forge"
 
-    modImplementation "maven.modrinth:hexgloop:$minecraftVersion-$HexGloopVersion-forge" //needed by Gloop
-    modImplementation "maven.modrinth:wnboi:$WnboiVersion-forge" //needed by Gloop
+    modRuntimeOnly "maven.modrinth:hexgloop:$minecraftVersion-$HexGloopVersion-forge"
+    modRuntimeOnly "maven.modrinth:wnboi:$WnboiVersion-forge" //needed by Gloop
 
 }
 
