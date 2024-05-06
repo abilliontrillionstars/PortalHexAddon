@@ -53,10 +53,14 @@ dependencies {
     shadowCommon(project(path: ":Common", configuration: "transformProductionForge")) { transitive = false }
 
     //added Dependents
-    //modImplementation ("maven.modrinth:immersive-portals-neoforge:${ImmPrtVersion}-${minecraftVersion}")
-    //modImplementation "com.github.iPortalTeam.ImmersivePortalsModForForge:v2.2.1-1.19.2"
-    //modImplementation "com.github.iPortalTeam:ImmersivePortalsModForForge:2.3.7-mc1.19.2-forge"
-    //modImplementation "com.github.iPortalTeam:immersive-portals:2.3.7-mc1.19.2-forge"
+    //modCompileOnly ("maven.modrinth:immersive-portals-neoforge:${ImmPrtForgeVersion}")
+    //modImplementation "com.github.iPortalTeam.mmersivePortalsModForForge:q_misc_util:v$ImmPrtForgeVersion-$minecraftVersion"
+    //modImplementation "com.github.iPortalTeam.mmersivePortalsModForForge:imm_ptl_core:v$ImmPrtForgeVersion-$minecraftVersion"
+    //modImplementation "com.github.iPortalTeam.mmersivePortalsModForForge:build:v$ImmPrtForgeVersion-$minecraftVersion"
+
+    modRuntimeOnly "com.github.iPortalTeam.ImmersivePortalsMod:q_misc_util:v$ImmPrtVersion-$minecraftVersion"
+    modRuntimeOnly "com.github.iPortalTeam.ImmersivePortalsMod:imm_ptl_core:v$ImmPrtVersion-$minecraftVersion"
+    modRuntimeOnly "com.github.iPortalTeam.ImmersivePortalsMod:build:v$ImmPrtVersion-$minecraftVersion"
 
     modRuntimeOnly "maven.modrinth:hexgloop:$minecraftVersion-$HexGloopVersion-forge"
     modRuntimeOnly "maven.modrinth:wnboi:$WnboiVersion-forge" //needed by Gloop

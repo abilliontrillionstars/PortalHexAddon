@@ -14,7 +14,7 @@ public class PortalAmbit {
         ArrayList<Entity> portalsInAmbit = PortalHexUtils.Companion.GetPortalInAmbit(ctx);
         for (Entity e : portalsInAmbit) {
             Portal Prt = (Portal) e;
-            Double ambitDistLeft = (32 - Prt.getEyePosition().distanceTo(ctx.getCaster().position())) / 2.0;
+            double ambitDistLeft = (32 - Prt.getEyePosition().distanceTo(ctx.getCaster().position())) / 2.0;
             if (ambitDistLeft >= pos.distanceTo(Prt.getDestPos())) {
                 modi = true;
                 break;

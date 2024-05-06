@@ -43,7 +43,7 @@ side = "BOTH"
 [[dependencies.portalhexaddon]]
 modId = "immersive_portals"
 mandatory = true
-versionRange = "[${ImmPrtVersion},)"
+versionRange = "[2.3.7,)"
 ordering = "NONE"
 side = "BOTH"
 
