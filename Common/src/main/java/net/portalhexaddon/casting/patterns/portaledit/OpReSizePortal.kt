@@ -17,7 +17,6 @@ class OpReSizePortal : SpellAction {
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 3
-    private val cost = 16 * MediaConstants.SHARD_UNIT
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -44,6 +43,8 @@ class OpReSizePortal : SpellAction {
             throw MishapBadEntity(prtEnt, Component.translatable("portaltranslate"))
         }
 
+        val cost = ((prtWidth + prtHight)/2).toInt() * 2 * MediaConstants.SHARD_UNIT
+        //16 * MediaConstants.SHARD_UNIT
         return Triple(
             Spell(prtEnt,prtHight,prtWidth),
             cost,

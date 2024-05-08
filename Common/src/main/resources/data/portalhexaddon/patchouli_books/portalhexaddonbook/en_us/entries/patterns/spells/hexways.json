@@ -1,11 +1,16 @@
 {
   "name": "portalhexaddon.entry.hexways",
-  "category": "hexcasting:interop",
-  "icon": "hexportaladdon:portal_staff",
+  "category": "hexcasting:patterns/spells",
+  "icon": "portalhexaddon:portal_staff",
   "sortnum": 0,
   "advancement": "hexcasting:root",
   "read_by_default": true,
   "pages": [
+    {
+      "title": "portalhexaddon.page.hexways.pageintrotitle",
+      "type": "text",
+      "text": "portalhexaddon.page.hexways.pageintro"
+    },
     {
       "title": "portalhexaddon.page.hexways.portalambittitle",
       "type": "text",

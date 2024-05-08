@@ -5,19 +5,20 @@ import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
+import com.mojang.math.Quaternion
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
-import net.portalhexaddon.portals.PortalHexUtils
+import net.minecraft.world.phys.Vec3
+import net.portalhexaddon.portals.PortalHexUtils.Companion.PortalVecRotate
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
-import kotlin.math.roundToInt
 
-class OpPortalSides : SpellAction {
+class OpRotateSideOfPortal : SpellAction {
     /**
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 2
-    private val cost = 5 * MediaConstants.SHARD_UNIT
+    private val cost = 16 * MediaConstants.DUST_UNIT
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -34,23 +35,22 @@ class OpPortalSides : SpellAction {
      */
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
         val prtEnt: Entity = args.getEntity(0,argc)
-        val prtSides: Double = args.getDoubleBetween(1,3.0,16.0,argc).roundToInt().toDouble()
+        val prtRot: Vec3 = args.getVec3(1,argc)
 
         ctx.isEntityInRange(prtEnt)
-
 
         if (prtEnt.type !== Portal.entityType) {
             throw MishapBadEntity(prtEnt, Component.translatable("portaltranslate"))
         }
 
         return Triple(
-            Spell(prtEnt, prtSides),
+            Spell(prtEnt, prtRot),
             cost,
             listOf(ParticleSpray.burst(ctx.caster.position(), 1.0))
         )
     }
 
-    private data class Spell(var prtEntity: Entity, var prtSides: Double) : RenderedSpell {
+    private data class Spell(var prtEntity: Entity, var prtRot: Vec3) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
@@ -58,23 +58,21 @@ class OpPortalSides : SpellAction {
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
             if (revPrt !== null) {
-               revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
+                revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
             }
-
-            PortalHexUtils.MakePortalNGon(prt,prtSides.toInt())
+            prt.setRotationTransformation(Quaternion.fromXYZ(PortalVecRotate(prtRot)[0].x.toFloat(),PortalVecRotate(prtRot)[0].y.toFloat(),PortalVecRotate(prtRot)[0].z.toFloat()))
             prt.reloadAndSyncToClient()
 
-            if (flipPrt != null) {
-                PortalHexUtils.MakePortalNGon(flipPrt,prtSides.toInt())
+            if (flipPrt !== null) {
+                prt.setRotationTransformation(Quaternion.fromXYZ(PortalVecRotate(prtRot)[0].x.toFloat(),PortalVecRotate(prtRot)[0].y.toFloat(),PortalVecRotate(prtRot)[0].z.toFloat()))
                 flipPrt.reloadAndSyncToClient()
             }
-
-            if (revPrt != null) {
-                PortalHexUtils.MakePortalNGon(revPrt,prtSides.toInt())
+            if (revPrt !== null) {
+                revPrt.setOrientation(PortalVecRotate(prtRot)[0], PortalVecRotate(prtRot)[1])
                 revPrt.reloadAndSyncToClient()
             }
-            if (revFlipPrt != null && revFlipPrt != prt) {
-                PortalHexUtils.MakePortalNGon(revFlipPrt,prtSides.toInt())
+            if (revFlipPrt !== null) {
+                revFlipPrt.setOrientation(PortalVecRotate(prtRot)[0], PortalVecRotate(prtRot)[1].multiply(Vec3(-1.0,-1.0,-1.0)))
                 revFlipPrt.reloadAndSyncToClient()
             }
         }

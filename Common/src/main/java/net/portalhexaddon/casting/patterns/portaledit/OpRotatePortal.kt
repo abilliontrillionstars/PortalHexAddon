@@ -1,6 +1,5 @@
 package net.portalhexaddon.casting.patterns.portaledit
 
-import at.petrak.hexcasting.api.misc.MediaConstants
 import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
@@ -17,7 +16,7 @@ class OpRotatePortal : SpellAction {
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 2
-    private val cost = 2 * MediaConstants.DUST_UNIT
+    private val cost = 1000
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]

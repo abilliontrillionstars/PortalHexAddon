@@ -36,14 +36,14 @@ class PortalHexUtils {
         fun GetPortalInAmbit(ctx: CastingContext): ArrayList<Entity> {
             val prtEnt: Iterable<Entity> = ctx.world.getLevel().getAllEntities()
             val portalsinambit: ArrayList<Entity> = ArrayList()
-                for (Entity in prtEnt) {
-                    if ((Entity.getEyePosition().distanceToSqr(ctx.caster.position()) <= 32.0 * 32.0)
-                        && Portal.entityType == Entity.getType()
-                        && ((Entity as Portal).teleportable)
-                    ) {
-                        portalsinambit.add(Entity)
-                    }
+            for (Entity in prtEnt) {
+                if ((Entity.getEyePosition().distanceToSqr(ctx.caster.position()) <= 32.0 * 32.0)
+                    && Portal.entityType == Entity.getType()
+                    && ((Entity as Portal).teleportable)
+                ) {
+                    portalsinambit.add(Entity)
                 }
+            }
             return portalsinambit
         }
         fun PortalVecRotate(prtRot: Vec3): List<Vec3> {
