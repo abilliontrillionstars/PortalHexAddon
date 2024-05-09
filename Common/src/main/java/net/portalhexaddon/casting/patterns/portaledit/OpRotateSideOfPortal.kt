@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.phys.Vec3
 import net.portalhexaddon.portals.PortalHexUtils.Companion.PortalVecRotate
+import qouteall.imm_ptl.core.api.PortalAPI
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
 
@@ -55,16 +56,22 @@ class OpRotateSideOfPortal : SpellAction {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
 
+            println(prt)
+
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
             if (revPrt !== null) {
                 revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
             }
+
+            println(flipPrt)
+
+            print(PortalAPI.getPortalOrientationQuaternion(prt))
             prt.setRotationTransformation(Quaternion.fromXYZ(PortalVecRotate(prtRot)[0].x.toFloat(),PortalVecRotate(prtRot)[0].y.toFloat(),PortalVecRotate(prtRot)[0].z.toFloat()))
             prt.reloadAndSyncToClient()
-
+            print(PortalAPI.getPortalOrientationQuaternion(prt))
             if (flipPrt !== null) {
-                prt.setRotationTransformation(Quaternion.fromXYZ(PortalVecRotate(prtRot)[0].x.toFloat(),PortalVecRotate(prtRot)[0].y.toFloat(),PortalVecRotate(prtRot)[0].z.toFloat()))
+                flipPrt.setRotationTransformation(Quaternion.fromXYZ(PortalVecRotate(prtRot)[0].x.toFloat(),PortalVecRotate(prtRot)[0].y.toFloat(),PortalVecRotate(prtRot)[0].z.toFloat()))
                 flipPrt.reloadAndSyncToClient()
             }
             if (revPrt !== null) {
