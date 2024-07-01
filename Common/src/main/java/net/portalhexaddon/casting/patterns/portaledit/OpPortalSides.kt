@@ -8,7 +8,6 @@ import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.portalhexaddon.portals.PortalHexUtils
-import qouteall.imm_ptl.core.portal.GeometryPortalShape
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
 import kotlin.math.roundToInt
@@ -17,8 +16,8 @@ class OpPortalSides : SpellAction {
     /**
      * The number of arguments from the stack that this action requires.
      */
-    override val argc: Int = 2
-    private val cost = 5 * MediaConstants.SHARD_UNIT
+    override val argc: Int = 3
+    private val cost = 0 * MediaConstants.SHARD_UNIT
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -36,6 +35,7 @@ class OpPortalSides : SpellAction {
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
         val prtEnt: Entity = args.getEntity(0,argc)
         val prtSides: Double = args.getDoubleBetween(1,3.0,16.0,argc).roundToInt().toDouble()
+        val prtRoll: Double = args.getDoubleBetween(2,0.0,1.0,argc)
 
         ctx.isEntityInRange(prtEnt)
 
@@ -45,13 +45,13 @@ class OpPortalSides : SpellAction {
         }
 
         return Triple(
-            Spell(prtEnt, prtSides),
+            Spell(prtEnt, prtSides, prtRoll),
             cost,
             listOf(ParticleSpray.burst(ctx.caster.position(), 1.0))
         )
     }
 
-    private data class Spell(var prtEntity: Entity, var prtSides: Double) : RenderedSpell {
+    private data class Spell(var prtEntity: Entity, var prtSides: Double, var prtRoll: Double) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
@@ -63,20 +63,20 @@ class OpPortalSides : SpellAction {
                revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
             }
 
-            PortalHexUtils.MakePortalNGon(prt,prtSides.toInt())
+            PortalHexUtils.MakePortalNGon(prt,prtSides.toInt(), prtRoll)
             prt.reloadAndSyncToClient()
 
             if (flipPrt != null) {
-                PortalHexUtils.MakePortalNGon(flipPrt,prtSides.toInt())
+                PortalHexUtils.MakePortalNGon(flipPrt,prtSides.toInt(), prtRoll)
                 flipPrt.reloadAndSyncToClient()
             }
 
             if (revPrt != null) {
-                PortalHexUtils.MakePortalNGon(revPrt,prtSides.toInt())
+                PortalHexUtils.MakePortalNGon(revPrt,prtSides.toInt(), prtRoll)
                 revPrt.reloadAndSyncToClient()
             }
             if (revFlipPrt != null && revFlipPrt != prt) {
-                PortalHexUtils.MakePortalNGon(revFlipPrt,prtSides.toInt())
+                PortalHexUtils.MakePortalNGon(revFlipPrt,prtSides.toInt(), prtRoll)
                 revFlipPrt.reloadAndSyncToClient()
             }
         }

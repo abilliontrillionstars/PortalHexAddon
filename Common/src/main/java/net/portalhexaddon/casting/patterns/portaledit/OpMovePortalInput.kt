@@ -58,7 +58,7 @@ class OpMovePortalInput : SpellAction {
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
             if (revPrt !== null) {
-               revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
+               revFlipPrt = (PortalManipulation.findFlippedPortal(revPrt) as Portal?)!!
             }
 
 
@@ -78,12 +78,6 @@ class OpMovePortalInput : SpellAction {
                 flipPrt.moveTo(prtLoc)
                 flipPrt.reloadAndSyncToClient()
             }
-
-
-            /** WHAT TO DO:
-             *  1) set input to new location
-             *  2) set the output side to the input new location
-             */
         }
     }
 }

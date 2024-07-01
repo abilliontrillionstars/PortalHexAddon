@@ -7,7 +7,6 @@ import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
-import net.minecraft.world.phys.Vec3
 import net.portalhexaddon.portals.PortalHexUtils
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
@@ -69,7 +68,7 @@ class OpReSizePortal : SpellAction {
             prt.height = prtHight
             prt.specialShape = null
             prt.reloadAndSyncToClient()
-            PortalHexUtils.MakePortalNGon(prt, 6)
+            PortalHexUtils.MakePortalNGon(prt, 6, 0.0)
             prt.reloadAndSyncToClient()
 
             if (flipPrt != null) {
@@ -77,7 +76,7 @@ class OpReSizePortal : SpellAction {
                 flipPrt.height = prtHight
                 flipPrt.specialShape = null
                 flipPrt.reloadAndSyncToClient()
-                PortalHexUtils.MakePortalNGon(flipPrt, 6)
+                PortalHexUtils.MakePortalNGon(flipPrt, 6, 0.0)
                 flipPrt.reloadAndSyncToClient()
             }
 
@@ -86,7 +85,7 @@ class OpReSizePortal : SpellAction {
                 revPrt.height = prtHight
                 revPrt.specialShape = null
                 revPrt.reloadAndSyncToClient()
-                PortalHexUtils.MakePortalNGon(revPrt, 6)
+                PortalHexUtils.MakePortalNGon(revPrt, 6, 0.0)
                 revPrt.reloadAndSyncToClient()
             }
             if (revFlipPrt != null && revFlipPrt != prt) {
@@ -94,7 +93,7 @@ class OpReSizePortal : SpellAction {
                 revFlipPrt.height = prtHight
                 revFlipPrt.specialShape = null
                 revFlipPrt.reloadAndSyncToClient()
-                PortalHexUtils.MakePortalNGon(revFlipPrt, 6)
+                PortalHexUtils.MakePortalNGon(revFlipPrt, 6, 0.0)
                 revFlipPrt.reloadAndSyncToClient()
             }
 
