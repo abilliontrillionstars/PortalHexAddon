@@ -8,5 +8,7 @@ public abstract class HexPortalEntity extends Portal {
     public HexPortalEntity(EntityType<?> entityType, Level world) {
         super(entityType, world);
     }
+    public int portalSides;
+    public double portalRoll;
 
 }

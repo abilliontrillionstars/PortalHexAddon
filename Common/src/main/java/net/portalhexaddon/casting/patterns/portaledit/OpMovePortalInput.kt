@@ -16,7 +16,7 @@ class OpMovePortalInput : SpellAction {
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 2
-    private val cost = MediaConstants.DUST_UNIT
+    private val cost = MediaConstants.DUST_UNIT * 2
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
