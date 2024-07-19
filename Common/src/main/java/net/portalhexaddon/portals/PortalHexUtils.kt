@@ -1,13 +1,17 @@
 package net.portalhexaddon.portals
 
 import at.petrak.hexcasting.api.spell.casting.CastingContext
+import at.petrak.hexcasting.common.casting.operators.selectors.OpGetEntitiesBy.Companion.isReasonablySelectable
+import net.minecraft.core.Registry
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.Entity
+import net.minecraft.world.phys.AABB
 import net.minecraft.world.phys.Vec3
 import qouteall.imm_ptl.core.portal.GeometryPortalShape
 import qouteall.imm_ptl.core.portal.Portal
+import java.util.function.BiConsumer
 import java.util.stream.Collectors
 import java.util.stream.IntStream
-import kotlin.collections.ArrayList
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -33,21 +37,16 @@ class PortalHexUtils {
             portal.cullableYEnd = 0.0
         }
 
-        fun GetPortalInAmbit(ctx: CastingContext): ArrayList<Entity> {
-            val prtEnt: Iterable<Entity> = ctx.world.getLevel().getAllEntities()
-            val portalsinambit: ArrayList<Entity> = ArrayList()
-            for (Entity in prtEnt) {
-                if ((Entity.getEyePosition().distanceToSqr(ctx.position) <= 32.0 * 32.0)
-                    && Portal.entityType == Entity.getType()
-                    && ((Entity as Portal).teleportable)
-                ) {
-                    portalsinambit.add(Entity)
-                }
+        fun GetPortalInAmbit(ctx: CastingContext): List<Entity> {
+            val aabb = AABB(ctx.position.add(Vec3(-32.0, -32.0, -32.0)), ctx.position.add(Vec3(32.0, 32.0, 32.0))) //this non laggy solution gotten from this: https://github.com/FallingColors/HexMod/blob/c8510ed83d/Common/src/main/java/at/petrak/hexcasting/common/casting/operators/selectors/OpGetEntitiesBy.kt
+            val entitiesGot = ctx.world.getEntities(null, aabb) {
+                isReasonablySelectable(ctx, it)
+                        && it.distanceToSqr(ctx.position) <= 32 * 32
             }
-            return portalsinambit
+            return entitiesGot
         }
         fun PortalVecRotate(prtRot: Vec3): List<Vec3> {
-            var PrtRotCors: Vec3 = prtRot.cross(Vec3(0.0, 1.0, 0.0)) //should be 0.0 0.25 0
+            var PrtRotCors: Vec3 = prtRot.cross(Vec3(0.0, 1.0, 0.0))
             var PrtRotCorsCors: Vec3 = PrtRotCors.cross(prtRot)
 
             when (prtRot.y()) {
@@ -62,5 +61,9 @@ class PortalHexUtils {
             }
             return listOf(PrtRotCors,PrtRotCorsCors)
         }
+        //this is less of a "portal" util, and more of a "so Stickia does not lose her mind" util
+        //I *really* dont want to remake this in Java for the entity Registry stuff. Or remake the fabric entry in Kotlin
+        public fun <T> bind(registry: Registry<in T>): BiConsumer<T, ResourceLocation> =
+            BiConsumer<T, ResourceLocation> { t, id -> Registry.register(registry, id, t) }
     }
 }
